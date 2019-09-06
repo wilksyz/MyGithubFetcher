@@ -14,12 +14,15 @@ import com.antoine.mygithubfetcher.R
  */
 class SearchFragment : Fragment() {
 
+    private lateinit var mView: View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        mView = inflater.inflate(R.layout.fragment_search, container, false)
+
+        return mView
     }
 
 
