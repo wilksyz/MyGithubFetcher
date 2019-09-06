@@ -7,7 +7,7 @@
     <data>
         <variable
             name="repo"
-            type="com.antoine.MyGithubFetcher" />
+            type="com.antoine.mygithubfetcher.models.Repo" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
