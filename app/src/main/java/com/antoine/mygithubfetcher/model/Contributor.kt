@@ -1,4 +1,4 @@
-package com.antoine.mygithubfetcher.models
+package com.antoine.mygithubfetcher.model
 
 data class Contributor(
     val avatar_url: String,

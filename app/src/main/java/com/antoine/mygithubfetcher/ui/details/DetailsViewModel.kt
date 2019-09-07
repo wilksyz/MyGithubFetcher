@@ -3,8 +3,8 @@ package com.antoine.mygithubfetcher.ui.details
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.antoine.mygithubfetcher.models.Branch
-import com.antoine.mygithubfetcher.models.Contributor
+import com.antoine.mygithubfetcher.model.Branch
+import com.antoine.mygithubfetcher.model.Contributor
 import com.antoine.mygithubfetcher.repository.RepoRepository
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver

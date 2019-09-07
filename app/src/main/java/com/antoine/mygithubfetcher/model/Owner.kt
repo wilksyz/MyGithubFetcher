@@ -1,4 +1,4 @@
-package com.antoine.mygithubfetcher.models
+package com.antoine.mygithubfetcher.model
 
 data class Owner(
     val avatar_url: String,

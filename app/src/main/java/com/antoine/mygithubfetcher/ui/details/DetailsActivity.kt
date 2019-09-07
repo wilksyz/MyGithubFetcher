@@ -1,7 +1,7 @@
 package com.antoine.mygithubfetcher.ui.details
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.antoine.mygithubfetcher.R
 
 private const val OWNER = "owner"

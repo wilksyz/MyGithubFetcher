@@ -1,14 +1,12 @@
 package com.antoine.mygithubfetcher.ui.search.recyclerView
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.antoine.mygithubfetcher.R
 import com.antoine.mygithubfetcher.databinding.RecyclerViewItemListRepositoryBinding
-import com.antoine.mygithubfetcher.models.Item
+import com.antoine.mygithubfetcher.model.Item
 
 class RepositoryListAdapter(private val listener: ClickListener): RecyclerView.Adapter<RepositoryListViewHolder>() {
 

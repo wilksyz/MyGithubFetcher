@@ -1,8 +1,8 @@
 package com.antoine.mygithubfetcher.api
 
-import com.antoine.mygithubfetcher.models.Branch
-import com.antoine.mygithubfetcher.models.Contributor
-import com.antoine.mygithubfetcher.models.Repo
+import com.antoine.mygithubfetcher.model.Branch
+import com.antoine.mygithubfetcher.model.Contributor
+import com.antoine.mygithubfetcher.model.Repo
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
