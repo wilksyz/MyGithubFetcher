@@ -19,7 +19,6 @@ class SearchViewModel: ViewModel() {
     fun getSearch(query: String): MutableLiveData<List<Item>> {
         mDisposable = mRepoRepository.getSearch(query).subscribeWith(object: DisposableObserver<Repo>() {
             override fun onNext(repository: Repo) {
-                Log.e(TAG,"On Next !!")
                 mRepoList.value = repository.items
             }
 
@@ -33,5 +32,4 @@ class SearchViewModel: ViewModel() {
         })
         return mRepoList
     }
-
 }
