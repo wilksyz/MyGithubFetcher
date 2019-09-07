@@ -1,4 +1,4 @@
-package com.antoine.mygithubfetcher.ui.recyclerView
+package com.antoine.mygithubfetcher.ui.search.recyclerView
 
 import androidx.recyclerview.widget.RecyclerView
 import com.antoine.mygithubfetcher.databinding.RecyclerViewItemListRepositoryBinding

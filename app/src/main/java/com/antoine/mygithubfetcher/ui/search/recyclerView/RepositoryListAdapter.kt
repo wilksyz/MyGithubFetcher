@@ -1,4 +1,4 @@
-package com.antoine.mygithubfetcher.ui.recyclerView
+package com.antoine.mygithubfetcher.ui.search.recyclerView
 
 import android.content.Context
 import android.view.LayoutInflater

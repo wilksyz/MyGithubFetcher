@@ -1,4 +1,4 @@
-package com.antoine.mygithubfetcher.ui
+package com.antoine.mygithubfetcher.ui.search
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
