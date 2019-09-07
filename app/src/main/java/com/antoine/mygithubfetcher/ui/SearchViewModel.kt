@@ -1,28 +1,35 @@
 package com.antoine.mygithubfetcher.ui
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.antoine.mygithubfetcher.api.GithubStream
+import com.antoine.mygithubfetcher.models.Item
 import com.antoine.mygithubfetcher.models.Repos
+import com.antoine.mygithubfetcher.repository.RepoRepository
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 
+private const val TAG = "SEARCH_VIEW_MODEL"
 class SearchViewModel: ViewModel() {
 
+    private val mRepoRepository = RepoRepository()
     lateinit var mDisposable: Disposable
+    private val mRepoList: MutableLiveData<List<Item>> = MutableLiveData()
 
     fun getSearch(query: String){
-        mDisposable = GithubStream.getSearch(query).subscribeWith(object: DisposableObserver<Repos>() {
+        mDisposable = mRepoRepository.getSearch(query).subscribeWith(object: DisposableObserver<Repos>() {
             override fun onNext(repository: Repos) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.e(TAG,"On Next !!")
+                mRepoList.value = repository.items
             }
 
             override fun onError(e: Throwable) {
-                Log.e("TAG","On Error",e)
+                Log.e(TAG,"On Error",e)
             }
 
             override fun onComplete() {
-                Log.i("TAG","On Complete !!")
+                Log.i(TAG,"On Complete !!")
             }
         })
     }
