@@ -38,7 +38,7 @@ class DetailsViewModel: ViewModel() {
         mDisposable = mRepoRepository.getBranches(owner, name).subscribeWith(object: DisposableObserver<List<Branch>>() {
             override fun onNext(repository: List<Branch>) {
                 mBranchesList.value = repository
-                Log.e(TAG, "result: $repository")
+                Log.e(TAG, "result: ${repository[0].name}")
             }
 
             override fun onError(e: Throwable) {

@@ -22,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 /**
  * A simple [Fragment] subclass.
  */
+private const val OWNER = "owner"
+private const val NAME = "name"
 class SearchFragment : Fragment(), ClickListener {
 
     private lateinit var mView: View
@@ -53,14 +55,16 @@ class SearchFragment : Fragment(), ClickListener {
     }
 
     private fun configureRecyclerView(){
-        this.mAdapter = RepositoryListAdapter(context, this)
+        this.mAdapter = RepositoryListAdapter(this)
         val recyclerView = mView.search_fragment_recycler_view
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
-    override fun onClick(position: Int) {
+    override fun onClick(owner: String, name: String) {
         val detailsIntent = Intent(context, DetailsActivity::class.java)
+        detailsIntent.putExtra(OWNER, owner)
+        detailsIntent.putExtra(NAME, name)
         startActivity(detailsIntent)
     }
 

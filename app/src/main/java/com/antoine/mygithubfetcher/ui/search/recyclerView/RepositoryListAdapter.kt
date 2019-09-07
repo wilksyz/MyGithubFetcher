@@ -10,7 +10,7 @@ import com.antoine.mygithubfetcher.R
 import com.antoine.mygithubfetcher.databinding.RecyclerViewItemListRepositoryBinding
 import com.antoine.mygithubfetcher.models.Item
 
-class RepositoryListAdapter(private val context: Context?,private val listener: ClickListener): RecyclerView.Adapter<RepositoryListViewHolder>() {
+class RepositoryListAdapter(private val listener: ClickListener): RecyclerView.Adapter<RepositoryListViewHolder>() {
 
     private var mRepoList: MutableList<Item> = ArrayList()
 
@@ -26,8 +26,7 @@ class RepositoryListAdapter(private val context: Context?,private val listener: 
     override fun onBindViewHolder(holder: RepositoryListViewHolder, position: Int) {
         holder.itemViewBinding.repo = mRepoList[position]
         holder.itemViewBinding.cardView.setOnClickListener {
-            Toast.makeText(context,"Click at the position: $position", Toast.LENGTH_LONG).show()
-            listener.onClick(position)
+            listener.onClick(mRepoList[position].owner.login, mRepoList[position].name)
         }
     }
 
@@ -37,5 +36,5 @@ class RepositoryListAdapter(private val context: Context?,private val listener: 
     }
 }
 interface ClickListener{
-    fun onClick(position: Int)
+    fun onClick(owner: String, name: String)
 }
