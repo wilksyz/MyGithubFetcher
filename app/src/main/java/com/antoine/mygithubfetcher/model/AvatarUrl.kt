@@ -3,18 +3,18 @@ package com.antoine.mygithubfetcher.model
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
-class AvatarContributor {
+object AvatarUrl {
 
-    var imageUrl: String = ""
+    lateinit var imageUrl: String
 
-    companion object{
+        @JvmStatic
         @BindingAdapter("imageUrl")
         fun loadImage(view: ImageView, imageUrl: String){
             Glide.with(view.context)
                 .load(imageUrl)
-                .circleCrop()
+                .apply(RequestOptions.circleCropTransform())
                 .into(view)
         }
-    }
 }

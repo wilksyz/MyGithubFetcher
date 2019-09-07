@@ -43,9 +43,7 @@ class SearchFragment : Fragment(), ClickListener {
 
     private fun getSearch(query: String) {
         mSearchFragmentViewModel.getSearch(query).observe(viewLifecycleOwner, Observer {repoList ->
-            for (repo in repoList){
                 mAdapter.updateData(repoList)
-            }
         })
     }
 

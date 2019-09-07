@@ -10,7 +10,7 @@ import com.antoine.mygithubfetcher.model.Item
 
 class RepositoryListAdapter(private val listener: ClickListener): RecyclerView.Adapter<RepositoryListViewHolder>() {
 
-    private var mRepoList: MutableList<Item> = ArrayList()
+    private var mRepoList: List<Item> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryListViewHolder {
         val binding: RecyclerViewItemListRepositoryBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.recycler_view_item_list_repository, parent, false)
