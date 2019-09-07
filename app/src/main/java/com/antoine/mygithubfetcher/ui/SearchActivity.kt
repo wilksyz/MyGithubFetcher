@@ -1,10 +1,10 @@
-package com.antoine.mygithubfetcher
+package com.antoine.mygithubfetcher.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.antoine.mygithubfetcher.ui.SearchFragment
+import com.antoine.mygithubfetcher.R
 
-class MainActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

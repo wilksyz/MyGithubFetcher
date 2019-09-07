@@ -40,4 +40,15 @@ dependencies {
 
     // Material Design
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+    //VIEW MODEL & LIVE DATA
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

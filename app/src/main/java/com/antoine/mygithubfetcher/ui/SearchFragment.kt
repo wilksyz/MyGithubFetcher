@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.antoine.mygithubfetcher.R
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 class SearchFragment : Fragment() {
 
     private lateinit var mView: View
+    private lateinit var mSearchFragmentViewModel: SearchViewModel
     private lateinit var mAdapter: RepositoryListAdapter
 
     override fun onCreateView(
@@ -27,8 +31,16 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_search, container, false)
         this.configureRecyclerView()
+        this.configureViewModel()
         this.sentDataOnRecyclerView()
 
+        mView.search_fragment_query.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                Toast.makeText(context,"Your query: ${mView.search_fragment_query.text}", Toast.LENGTH_LONG).show()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
         return mView
     }
 
@@ -40,6 +52,10 @@ class SearchFragment : Fragment() {
         repoList.add(Repo("RealEstateManager", "Save your catalog of property for sale in the Android app", 12, "Kotlin"))
         repoList.add(Repo("GoodCount", "Faites les comptes entre amis facilement", 24, "Kotlin"))
         mAdapter.updateData(repoList)
+    }
+
+    private fun configureViewModel(){
+        mSearchFragmentViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
     }
 
     private fun configureRecyclerView(){
