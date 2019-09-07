@@ -1,6 +1,7 @@
 package com.antoine.mygithubfetcher.ui.search
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
@@ -13,13 +14,15 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.antoine.mygithubfetcher.R
+import com.antoine.mygithubfetcher.ui.details.DetailsActivity
+import com.antoine.mygithubfetcher.ui.search.recyclerView.ClickListener
 import com.antoine.mygithubfetcher.ui.search.recyclerView.RepositoryListAdapter
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ClickListener {
 
     private lateinit var mView: View
     private lateinit var mSearchFragmentViewModel: SearchViewModel
@@ -50,10 +53,15 @@ class SearchFragment : Fragment() {
     }
 
     private fun configureRecyclerView(){
-        this.mAdapter = RepositoryListAdapter(context)
+        this.mAdapter = RepositoryListAdapter(context, this)
         val recyclerView = mView.search_fragment_recycler_view
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+    }
+
+    override fun onClick(position: Int) {
+        val detailsIntent = Intent(context, DetailsActivity::class.java)
+        startActivity(detailsIntent)
     }
 
     private fun initSearchInputListener(){

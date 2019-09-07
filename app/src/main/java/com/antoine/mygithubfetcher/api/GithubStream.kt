@@ -17,14 +17,14 @@ object GithubStream {
             .timeout(30, TimeUnit.SECONDS)
     }
 
-    fun getContributors(owner: String, name: String): Observable<Contributor> {
+    fun getContributors(owner: String, name: String): Observable<List<Contributor>> {
         val githubApiService: GithubService = GithubService.retrofit.create(GithubService::class.java)
         return githubApiService.getContributors(owner, name).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .timeout(30, TimeUnit.SECONDS)
     }
 
-    fun getBranches(owner: String, name: String): Observable<Branch> {
+    fun getBranches(owner: String, name: String): Observable<List<Branch>> {
         val githubApiService: GithubService = GithubService.retrofit.create(GithubService::class.java)
         return githubApiService.getBranches(owner, name).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

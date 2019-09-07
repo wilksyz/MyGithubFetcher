@@ -17,10 +17,10 @@ interface GithubService {
     fun searchRepos(@Query("q") query: String, @Query("per_page") page: Int): Observable<Repo>
 
     @GET("repos/{owner}/{name}/branches")
-    fun getBranches(@Path("owner") owner: String, @Path("name") name: String): Observable<Branch>
+    fun getBranches(@Path("owner") owner: String, @Path("name") name: String): Observable<List<Branch>>
 
     @GET("repos/{owner}/{name}/contributors")
-    fun getContributors(@Path("owner") owner: String, @Path("name") name: String): Observable<Contributor>
+    fun getContributors(@Path("owner") owner: String, @Path("name") name: String): Observable<List<Contributor>>
 
     companion object {
         val retrofit: Retrofit = Retrofit.Builder()

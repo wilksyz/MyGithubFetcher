@@ -12,11 +12,11 @@ class RepoRepository {
         return GithubStream.getSearch(query)
     }
 
-    fun getContributors(owner: String, name: String): Observable<Contributor> {
+    fun getContributors(owner: String, name: String): Observable<List<Contributor>> {
         return GithubStream.getContributors(owner, name)
     }
 
-    fun getBranches(owner: String, name: String): Observable<Branch> {
+    fun getBranches(owner: String, name: String): Observable<List<Branch>> {
         return GithubStream.getBranches(owner, name)
     }
 }
