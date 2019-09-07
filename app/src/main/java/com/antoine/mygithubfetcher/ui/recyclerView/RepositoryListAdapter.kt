@@ -8,11 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.antoine.mygithubfetcher.R
 import com.antoine.mygithubfetcher.databinding.RecyclerViewItemListRepositoryBinding
-import com.antoine.mygithubfetcher.models.Repo
+import com.antoine.mygithubfetcher.models.Item
 
 class RepositoryListAdapter(private val context: Context?): RecyclerView.Adapter<RepositoryListViewHolder>() {
 
-    private var mRepoList = ArrayList<Repo>()
+    private var mRepoList: MutableList<Item> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryListViewHolder {
         val binding: RecyclerViewItemListRepositoryBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.recycler_view_item_list_repository, parent, false)
@@ -30,8 +30,8 @@ class RepositoryListAdapter(private val context: Context?): RecyclerView.Adapter
         }
     }
 
-    fun updateData(repoList: ArrayList<Repo>){
-        mRepoList = repoList
+    fun updateData(repoList: List<Item>){
+        mRepoList = repoList as MutableList<Item>
         notifyDataSetChanged()
     }
 }

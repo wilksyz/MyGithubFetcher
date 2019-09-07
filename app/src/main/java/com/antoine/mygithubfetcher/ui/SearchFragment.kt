@@ -2,17 +2,19 @@ package com.antoine.mygithubfetcher.ui
 
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.antoine.mygithubfetcher.R
-import com.antoine.mygithubfetcher.models.Repo
 import com.antoine.mygithubfetcher.ui.recyclerView.RepositoryListAdapter
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
@@ -32,26 +34,17 @@ class SearchFragment : Fragment() {
         mView = inflater.inflate(R.layout.fragment_search, container, false)
         this.configureRecyclerView()
         this.configureViewModel()
-        this.sentDataOnRecyclerView()
+        this.initSearchInputListener()
 
-        mView.search_fragment_query.setOnEditorActionListener { v, actionId, event ->
-            if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                Toast.makeText(context,"Your query: ${mView.search_fragment_query.text}", Toast.LENGTH_LONG).show()
-                return@setOnEditorActionListener true
-            }
-            return@setOnEditorActionListener false
-        }
         return mView
     }
 
-    private fun sentDataOnRecyclerView() {
-        val repoList = ArrayList<Repo>()
-        repoList.add(Repo("MoodTracker", "Display your mood of the day", 6, "Java"))
-        repoList.add(Repo("MyNews", "Display the new articles of New York Times", 8, "Java"))
-        repoList.add(Repo("Go4Lunch", "Now it's possible to lunch with your friends", 4, "Java"))
-        repoList.add(Repo("RealEstateManager", "Save your catalog of property for sale in the Android app", 12, "Kotlin"))
-        repoList.add(Repo("GoodCount", "Faites les comptes entre amis facilement", 24, "Kotlin"))
-        mAdapter.updateData(repoList)
+    private fun getSearch(query: String) {
+        mSearchFragmentViewModel.getSearch(query).observe(viewLifecycleOwner, Observer {repoList ->
+            for (repo in repoList){
+                mAdapter.updateData(repoList)
+            }
+        })
     }
 
     private fun configureViewModel(){
@@ -63,5 +56,24 @@ class SearchFragment : Fragment() {
         val recyclerView = mView.search_fragment_recycler_view
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
+    }
+
+    private fun initSearchInputListener(){
+        mView.search_fragment_query.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                this.getSearch(mView.search_fragment_query.text.toString())
+                true
+            }else{
+                false
+            }
+        }
+        mView.search_fragment_query.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                this.getSearch(mView.search_fragment_query.text.toString())
+                true
+            } else {
+                false
+            }
+        }
     }
 }

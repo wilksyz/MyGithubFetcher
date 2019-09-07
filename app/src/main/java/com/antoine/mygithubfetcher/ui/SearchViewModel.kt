@@ -3,9 +3,8 @@ package com.antoine.mygithubfetcher.ui
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.antoine.mygithubfetcher.api.GithubStream
 import com.antoine.mygithubfetcher.models.Item
-import com.antoine.mygithubfetcher.models.Repos
+import com.antoine.mygithubfetcher.models.Repo
 import com.antoine.mygithubfetcher.repository.RepoRepository
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
@@ -17,9 +16,9 @@ class SearchViewModel: ViewModel() {
     lateinit var mDisposable: Disposable
     private val mRepoList: MutableLiveData<List<Item>> = MutableLiveData()
 
-    fun getSearch(query: String){
-        mDisposable = mRepoRepository.getSearch(query).subscribeWith(object: DisposableObserver<Repos>() {
-            override fun onNext(repository: Repos) {
+    fun getSearch(query: String): MutableLiveData<List<Item>> {
+        mDisposable = mRepoRepository.getSearch(query).subscribeWith(object: DisposableObserver<Repo>() {
+            override fun onNext(repository: Repo) {
                 Log.e(TAG,"On Next !!")
                 mRepoList.value = repository.items
             }
@@ -32,6 +31,7 @@ class SearchViewModel: ViewModel() {
                 Log.i(TAG,"On Complete !!")
             }
         })
+        return mRepoList
     }
 
 }

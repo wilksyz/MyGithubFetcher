@@ -7,7 +7,7 @@
     <data>
         <variable
             name="repo"
-            type="com.antoine.mygithubfetcher.models.Repo" />
+            type="com.antoine.mygithubfetcher.models.Item" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@{repo.title}"
+                android:text="@{repo.name}"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/language"
@@ -46,12 +46,13 @@
                 android:layout_marginEnd="16dp"
                 android:text="@{repo.language}"
                 android:textAlignment="viewEnd"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/title"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title"
                 tools:text="Kotlin" />
 
             <TextView
@@ -77,13 +78,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
                 android:drawableStart="@android:drawable/star_off"
                 android:gravity="center_vertical"
-                android:text="@{Integer.toString(repo.star)}"
+                android:paddingBottom="8dp"
+                android:text="@{Integer.toString(repo.stargazers_count)}"
                 android:textAlignment="viewEnd"
                 app:drawableTint="@android:color/holo_orange_light"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"

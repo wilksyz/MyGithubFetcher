@@ -1,4 +1,7 @@
 package com.antoine.mygithubfetcher.models
 
-class Repo(var title: String, var description: String, var star: Int, var language: String) {
-}
+data class Repo(
+    val incomplete_results: Boolean,
+    val items: List<Item>,
+    val total_count: Int
+)
