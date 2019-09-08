@@ -34,8 +34,9 @@ class SearchFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_search, container, false)
-        this.configureRecyclerView()
         this.configureViewModel()
+        this.configureRecyclerView()
+        if (savedInstanceState != null) this.restoreSaveInstanceState(savedInstanceState)
         this.initSearchInputListener()
 
         return mView
@@ -87,9 +88,18 @@ class SearchFragment : Fragment(), ClickListener {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
         outState.run {
             putAll(outState)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun restoreSaveInstanceState(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null){
+            val repoList = mSearchFragmentViewModel.restoreData()
+            if (repoList != null) {
+                mAdapter.updateData(repoList)
+            }
         }
     }
 }

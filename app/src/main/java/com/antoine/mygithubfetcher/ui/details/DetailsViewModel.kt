@@ -52,4 +52,12 @@ class DetailsViewModel: ViewModel() {
         })
         return mBranchesList
     }
+
+    fun restoreContributors(): List<Contributor>? {
+        return mContributorsList.value
+    }
+
+    fun restoreBranches(): List<Branch>? {
+        return mBranchesList.value
+    }
 }

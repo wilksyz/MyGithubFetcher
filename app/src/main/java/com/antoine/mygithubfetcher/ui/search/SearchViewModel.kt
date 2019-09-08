@@ -13,7 +13,7 @@ private const val TAG = "SEARCH_VIEW_MODEL"
 class SearchViewModel: ViewModel() {
 
     private val mRepoRepository = RepoRepository()
-    lateinit var mDisposable: Disposable
+    private lateinit var mDisposable: Disposable
     private val mRepoList: MutableLiveData<List<Item>> = MutableLiveData()
 
     // Call repository for the search
@@ -32,5 +32,9 @@ class SearchViewModel: ViewModel() {
             }
         })
         return mRepoList
+    }
+
+    fun restoreData(): List<Item>? {
+        return mRepoList.value
     }
 }
