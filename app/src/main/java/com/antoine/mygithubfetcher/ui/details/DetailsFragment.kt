@@ -54,6 +54,7 @@ class DetailsFragment : Fragment() {
         contributorRecyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
+    // Get the branches and the contributors of repository
     private fun getDetails(owner: String, name: String) {
         mDetailsFragmentViewModel.getContributors(owner, name).observe(viewLifecycleOwner, Observer {contributorsList ->
             mContributorAdapter.updateData(contributorsList)

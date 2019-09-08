@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object GithubStream {
 
+
     fun getSearch(query: String): Observable<Repo> {
         val githubApiService: GithubService = GithubService.retrofit.create(GithubService::class.java)
         return githubApiService.searchRepos(query, 100).subscribeOn(Schedulers.io())

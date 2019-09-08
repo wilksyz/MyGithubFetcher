@@ -16,6 +16,7 @@ class SearchViewModel: ViewModel() {
     lateinit var mDisposable: Disposable
     private val mRepoList: MutableLiveData<List<Item>> = MutableLiveData()
 
+    // Call repository for the search
     fun getSearch(query: String): MutableLiveData<List<Item>> {
         mDisposable = mRepoRepository.getSearch(query).subscribeWith(object: DisposableObserver<Repo>() {
             override fun onNext(repository: Repo) {

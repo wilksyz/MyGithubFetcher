@@ -17,6 +17,7 @@ class DetailsViewModel: ViewModel() {
     private val mContributorsList: MutableLiveData<List<Contributor>> = MutableLiveData()
     private val mBranchesList: MutableLiveData<List<Branch>> = MutableLiveData()
 
+    // Call repository for get the contributors
     fun getContributors(owner: String, name: String): MutableLiveData<List<Contributor>> {
         mDisposable = mRepoRepository.getContributors(owner, name).subscribeWith(object: DisposableObserver<List<Contributor>>() {
             override fun onNext(repository: List<Contributor>) {
@@ -34,6 +35,7 @@ class DetailsViewModel: ViewModel() {
         return mContributorsList
     }
 
+    // Call repository for get the branches
     fun getBranches(owner: String, name: String): MutableLiveData<List<Branch>> {
         mDisposable = mRepoRepository.getBranches(owner, name).subscribeWith(object: DisposableObserver<List<Branch>>() {
             override fun onNext(repository: List<Branch>) {

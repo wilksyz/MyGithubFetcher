@@ -41,6 +41,7 @@ class SearchFragment : Fragment(), ClickListener {
         return mView
     }
 
+    // Get the query of user
     private fun getSearch(query: String) {
         mSearchFragmentViewModel.getSearch(query).observe(viewLifecycleOwner, Observer {repoList ->
                 mAdapter.updateData(repoList)
@@ -65,8 +66,9 @@ class SearchFragment : Fragment(), ClickListener {
         startActivity(detailsIntent)
     }
 
+    // Initialise the listeners of editText
     private fun initSearchInputListener(){
-        mView.search_fragment_query.setOnEditorActionListener { v, actionId, event ->
+        mView.search_fragment_query.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 this.getSearch(mView.search_fragment_query.text.toString())
                 true
@@ -74,13 +76,20 @@ class SearchFragment : Fragment(), ClickListener {
                 false
             }
         }
-        mView.search_fragment_query.setOnKeyListener { v, keyCode, event ->
+        mView.search_fragment_query.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 this.getSearch(mView.search_fragment_query.text.toString())
                 true
             } else {
                 false
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.run {
+            putAll(outState)
         }
     }
 }
